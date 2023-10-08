@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".activities.MainActivity">
+
+    <Button
+        android:id="@+id/buttonAddRoute"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="Add Route"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonAddSubscription"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="Add Subscription"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonRemoveSubscription"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="Remove Subscription"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonAddDriver"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="Add Delivery Driver"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonList"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="List"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonQuit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#465561"
+        android:text="Quit App"
+        android:textSize="20sp" />
+</LinearLayout>
