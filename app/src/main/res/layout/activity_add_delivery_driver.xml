@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".activities.AddDeliveryDriver">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#E8D5D5"
+        android:backgroundTint="#C3BDBD"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonAddDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:elevation="10dp"
+            android:text="ADD"
+            app:icon="@android:drawable/ic_menu_add"
+            app:iconPadding="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBackDriver"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:background="@android:drawable/ic_menu_revert"
+            android:backgroundTint="#2B0868" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E3E1E1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewDriverTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6750A4"
+            android:elevation="7dp"
+            android:text="Delivery Driver"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textViewNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:cursorVisible="true"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="Enter your full name"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textViewAddressDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Address"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextAddressDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="Format: 111 apple st, NY, USA,90210"
+            android:inputType="text"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textViewTelephoneDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Telephone"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextTelephoneDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="+1-111-111-1111"
+            android:inputType="phone"
+            android:paddingLeft="3dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
