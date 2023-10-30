@@ -21,4 +21,6 @@ public interface SubscriptionDao {
     void deleteSubscription(SubscriptionModel subscription);
     @Query("SELECT * FROM subscriptions ORDER BY id ASC")
     LiveData<List<SubscriptionModel>> getAllSubscriptions();
+    @Query("SELECT * FROM subscriptions WHERE id = :id")
+    LiveData<List<SubscriptionModel>> getSubscriptionById(int id);
 }

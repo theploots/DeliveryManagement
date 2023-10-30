@@ -1,7 +1,11 @@
 package com.example.deliverymanagement;
 
 
+
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
+
 import com.example.deliverymanagement.DAO.ClientDao;
 import com.example.deliverymanagement.DAO.DriverDao;
 import com.example.deliverymanagement.DAO.ProductDao;
@@ -34,7 +38,7 @@ public class DeliveryManagementRepository {
     private LiveData<List<SubscriptionModel>> allSubscriptions;
     private LiveData<List<ClientModel>> allClients;
 
-    public DeliveryManagementRepository(android.content.Context context) {
+    public DeliveryManagementRepository(Context context) {
         DeliveryManagementDatabase database = DeliveryManagementDatabase.getInstance(context);
         routeDao = database.routeDao();
         driverDao = database.driverDao();
@@ -116,6 +120,10 @@ public class DeliveryManagementRepository {
         return allDrivers;
     }
 
+    public LiveData<List<DriverModel>> getDriverById(int id) {
+        return  driverDao.getDriverById(id);
+    }
+
     public void insertProduct(ProductModel product) {
         executors.execute(new Runnable() {
             @Override
@@ -184,6 +192,9 @@ public class DeliveryManagementRepository {
         return allSubscriptions;
     }
 
+    public LiveData<List<SubscriptionModel>> getSubscriptionById(int id) {
+        return  subscriptionDao.getSubscriptionById(id);
+    }
     public void insertClient(ClientModel client) {
         executors.execute(new Runnable() {
             @Override
@@ -216,6 +227,10 @@ public class DeliveryManagementRepository {
 
     public LiveData<List<ClientModel>> getAllClients() {
         return allClients;
+    }
+
+    public LiveData<List<ClientModel>> getClientById(int id) {
+        return clientDao.getClientById(id);
     }
 
 

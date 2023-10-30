@@ -1,6 +1,7 @@
 package com.example.deliverymanagement;
 
 import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
@@ -33,7 +34,10 @@ public abstract class DeliveryManagementDatabase extends RoomDatabase {
 
     public static synchronized DeliveryManagementDatabase getInstance(android.content.Context context) {
         if (instance == null) {
-            instance = androidx.room.Room.databaseBuilder(context.getApplicationContext(), DeliveryManagementDatabase.class, "delivery_management_database").fallbackToDestructiveMigration().build();
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                    DeliveryManagementDatabase.class, "delivery_management_database")
+                    .fallbackToDestructiveMigration()
+                    .build();
         }
         return instance;
     }

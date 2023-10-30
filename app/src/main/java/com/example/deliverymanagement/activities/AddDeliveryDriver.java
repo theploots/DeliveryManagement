@@ -49,7 +49,7 @@ public class AddDeliveryDriver extends AppCompatActivity {
         backDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddDeliveryDriver.this, List.class);
+                Intent intent = new Intent(AddDeliveryDriver.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 

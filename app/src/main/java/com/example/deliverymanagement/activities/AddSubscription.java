@@ -95,7 +95,7 @@ public class AddSubscription extends AppCompatActivity {
         backAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddSubscription.this, List.class);
+                Intent intent = new Intent(AddSubscription.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
