@@ -1,38 +1,43 @@
 package com.example.deliverymanagement.models;
 
-import androidx.annotation.Nullable;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
 
-@Entity(tableName = "routes")
+@Entity(tableName = "routes",
+        foreignKeys = {
+                @ForeignKey(
+                        entity = DriverModel.class,
+                        parentColumns = "id",
+                        childColumns = "driverId",
+                        onDelete = ForeignKey.SET_NULL
+                )
+        })
 public class RouteModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @Nullable
-    private SubscriptionModel subscription;
-    @Nullable
-    private DriverModel driver;
 
-    public RouteModel(@Nullable SubscriptionModel subscription, @Nullable DriverModel driver) {
-        this.subscription = subscription;
-        this.driver = driver;
+    @ColumnInfo(index = true)
+    private Integer driverId; // Made nullable
+
+    public RouteModel() {
+        this.driverId = null;  // No driver associated initially
     }
 
     public int getId() {
         return id;
     }
 
-    @Nullable
-    public SubscriptionModel getSubscription() {
-        return subscription;
-    }
-
-    @Nullable
-    public DriverModel getDriver() {
-        return driver;
+    public Integer getDriverId() {
+        return driverId;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setDriverId(Integer driverId) {
+        this.driverId = driverId;
     }
 }

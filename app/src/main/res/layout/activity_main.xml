@@ -1,77 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4DEDE"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
-    <Button
-        android:id="@+id/buttonAddRoute"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="Add Route"
-        android:textSize="20sp" />
+    <!-- Other UI elements, like buttons and such -->
 
-    <Button
-        android:id="@+id/MenuAddSubscription"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="Add Subscription"
-        android:textSize="20sp" />
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
-    <Button
-        android:id="@+id/buttonRemove"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="Remove Subscription"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/buttonAddDriver"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="Add Delivery Driver"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/buttonList"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="List"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/buttonQuit"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="#6750A4"
-        android:backgroundTint="#465561"
-        android:elevation="10dp"
-        android:text="Quit App"
-        android:textSize="20sp" />
-</LinearLayout>
+</RelativeLayout>

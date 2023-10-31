@@ -1,12 +1,17 @@
 package com.example.deliverymanagement.models;
-
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.ColumnInfo;
 
-@Entity(tableName = "subscriptions",
+@Entity(tableName = "route_details",
         foreignKeys = {
+                @ForeignKey(
+                        entity = RouteModel.class,
+                        parentColumns = "id",
+                        childColumns = "routeId",
+                        onDelete = ForeignKey.CASCADE
+                ),
                 @ForeignKey(
                         entity = ClientModel.class,
                         parentColumns = "id",
@@ -20,9 +25,12 @@ import androidx.room.ColumnInfo;
                         onDelete = ForeignKey.CASCADE
                 )
         })
-public class SubscriptionModel {
+public class RouteDetailsModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(index = true)
+    private int routeId;
 
     @ColumnInfo(index = true)
     private int clientId;
@@ -30,9 +38,10 @@ public class SubscriptionModel {
     @ColumnInfo(index = true)
     private int productId;
 
-    private int quantity;
+    private int quantity; // Quantity of the product for the client on this route
 
-    public SubscriptionModel(int clientId, int productId, int quantity) {
+    public RouteDetailsModel(int routeId, int clientId, int productId, int quantity) {
+        this.routeId = routeId;
         this.clientId = clientId;
         this.productId = productId;
         this.quantity = quantity;
@@ -40,6 +49,10 @@ public class SubscriptionModel {
 
     public int getId() {
         return id;
+    }
+
+    public int getRouteId() {
+        return routeId;
     }
 
     public int getClientId() {

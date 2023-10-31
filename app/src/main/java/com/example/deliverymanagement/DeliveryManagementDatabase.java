@@ -1,74 +1,57 @@
 package com.example.deliverymanagement;
 
+import android.content.Context;
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.deliverymanagement.DAO.*;
+import com.example.deliverymanagement.models.*;
 
-import com.example.deliverymanagement.DAO.ClientDao;
-import com.example.deliverymanagement.DAO.DriverDao;
-import com.example.deliverymanagement.DAO.ProductDao;
-import com.example.deliverymanagement.DAO.RouteDao;
-import com.example.deliverymanagement.DAO.SubscriptionDao;
-import com.example.deliverymanagement.models.ClientModel;
-import com.example.deliverymanagement.models.RouteModel;
-import com.example.deliverymanagement.models.SubscriptionModel;
-
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {com.example.deliverymanagement.models.RouteModel.class, com.example.deliverymanagement.models.SubscriptionModel.class, com.example.deliverymanagement.models.ClientModel.class, com.example.deliverymanagement.models.ProductModel.class, com.example.deliverymanagement.models.DriverModel.class}, version = 1)
+@Database(entities = {
+        RouteModel.class,
+        SubscriptionModel.class,
+        ClientModel.class,
+        ProductModel.class,
+        DriverModel.class,
+        RouteDetailsModel.class
+}, version = 2)
 public abstract class DeliveryManagementDatabase extends RoomDatabase {
 
     private static DeliveryManagementDatabase instance;
 
-    public abstract com.example.deliverymanagement.DAO.RouteDao routeDao();
+    public abstract RouteDao routeDao();
+    public abstract SubscriptionDao subscriptionDao();
+    public abstract ClientDao clientDao();
+    public abstract ProductDao productDao();
+    public abstract DriverDao driverDao();
+    public abstract RouteDetailsDao routeDetailsDao();
 
-    public abstract com.example.deliverymanagement.DAO.SubscriptionDao subscriptionDao();
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            Executors.newSingleThreadExecutor().execute(() -> {
+                ProductDao productDao = instance.productDao();
+                productDao.insertProduct(new ProductModel("Magazine"));
 
-    public abstract com.example.deliverymanagement.DAO.ClientDao clientDao();
+                productDao.insertProduct(new ProductModel("Newspaper"));
+            });
+        }
+    };
 
-    public abstract com.example.deliverymanagement.DAO.ProductDao productDao();
-
-    public abstract com.example.deliverymanagement.DAO.DriverDao driverDao();
-
-    public static synchronized DeliveryManagementDatabase getInstance(android.content.Context context) {
+    public static synchronized DeliveryManagementDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    DeliveryManagementDatabase.class, "delivery_management_database")
+                            DeliveryManagementDatabase.class, "delivery_management_database")
                     .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
                     .build();
         }
         return instance;
     }
-
-    public static RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(androidx.sqlite.db.SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            ClientDao clientDao = instance.clientDao();
-            RouteDao routeDao = instance.routeDao();
-            ProductDao productDao = instance.productDao();
-            DriverDao driverDao = instance.driverDao();
-            SubscriptionDao subscriptionDao = instance.subscriptionDao();
-
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-
-
-                }
-            });
-
-
-
-
-        }
-    };
-
-
-
 }

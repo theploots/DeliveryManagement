@@ -1,6 +1,5 @@
 package com.example.deliverymanagement.models;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,23 +7,28 @@ import androidx.room.PrimaryKey;
 public class ProductModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @NonNull
-    private String description;
 
-    public ProductModel(@NonNull String description) {
-        this.description = description;
+    private String productName;
+
+    public ProductModel(String productName) {
+        this.productName = productName;
     }
+
+    // Getter and Setter for id and productName
 
     public int getId() {
         return id;
     }
 
-    @NonNull
-    public String getDescription() {
-        return description;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }

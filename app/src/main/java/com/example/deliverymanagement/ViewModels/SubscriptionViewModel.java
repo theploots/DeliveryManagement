@@ -39,8 +39,9 @@ public class SubscriptionViewModel extends AndroidViewModel {
         return allSubscriptions;
     }
 
-    public LiveData<List<SubscriptionModel>> getSubscriptionById(int id) {
+    public LiveData<SubscriptionModel> getSubscriptionById(int id) {
         return  repository.getSubscriptionById(id);
     }
+
 
 }

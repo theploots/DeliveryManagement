@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "drivers")
+@Entity(tableName = "driver")
 public class DriverModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -13,16 +13,19 @@ public class DriverModel {
     @NonNull
     private String lastName;
     @NonNull
-    private String address;
+    private String phoneNumber;
 
-    public DriverModel(@NonNull String firstName, @NonNull String lastName, @NonNull String address) {
+    public DriverModel(@NonNull String firstName, @NonNull String lastName, @NonNull String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     @NonNull
@@ -36,11 +39,7 @@ public class DriverModel {
     }
 
     @NonNull
-    public String getAddress() {
-        return address;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public String getPhoneNumber() { // Changed method name here
+        return phoneNumber;
     }
 }

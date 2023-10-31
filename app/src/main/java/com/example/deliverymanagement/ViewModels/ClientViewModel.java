@@ -37,7 +37,7 @@ public class ClientViewModel extends AndroidViewModel {
         return allClients;
     }
 
-    public LiveData<List<ClientModel>> getClientById(int id) {
-        return  repository.getClientById(id);
+    public LiveData<ClientModel> getClientById(int id) { // Note the change in return type here
+        return repository.getClientById(id);
     }
 }

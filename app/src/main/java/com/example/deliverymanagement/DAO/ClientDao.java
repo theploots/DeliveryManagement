@@ -13,17 +13,18 @@ import java.util.List;
 
 @Dao
 public interface ClientDao {
-
     @Insert
-    void insertClient(ClientModel client);
+    long insertClient(ClientModel client);
+
     @Update
     void updateClient(ClientModel client);
+
     @Delete
     void deleteClient(ClientModel client);
+
     @Query("SELECT * FROM clients ORDER BY id ASC")
     LiveData<List<ClientModel>> getAllClients();
+
     @Query("SELECT * FROM clients WHERE id = :id")
-    LiveData<List<ClientModel>> getClientById(int id);
-
-
+    LiveData<ClientModel> getClientById(int id);
 }

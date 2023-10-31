@@ -13,15 +13,20 @@ import java.util.List;
 
 @Dao
 public interface DriverDao {
-
     @Insert
     void insertDriver(DriverModel driver);
+
     @Update
     void updateDriver(DriverModel driver);
+
     @Delete
     void deleteDriver(DriverModel driver);
-    @Query("SELECT * FROM drivers ORDER BY id ASC")
+
+    @Query("SELECT * FROM driver ORDER BY id ASC")
     LiveData<List<DriverModel>> getAllDrivers();
-    @Query("SELECT * FROM drivers WHERE id = :id")
-    LiveData<List<DriverModel>> getDriverById(int id);
+
+    @Query("SELECT * FROM driver WHERE id = :driverId")
+    LiveData<DriverModel> getDriverById(int driverId);
+
+
 }

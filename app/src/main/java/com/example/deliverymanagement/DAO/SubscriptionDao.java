@@ -15,12 +15,26 @@ import java.util.List;
 public interface SubscriptionDao {
     @Insert
     void insertSubscription(SubscriptionModel subscription);
+
     @Update
     void updateSubscription(SubscriptionModel subscription);
+
     @Delete
     void deleteSubscription(SubscriptionModel subscription);
+
     @Query("SELECT * FROM subscriptions ORDER BY id ASC")
     LiveData<List<SubscriptionModel>> getAllSubscriptions();
+
     @Query("SELECT * FROM subscriptions WHERE id = :id")
-    LiveData<List<SubscriptionModel>> getSubscriptionById(int id);
+    LiveData<SubscriptionModel> getSubscriptionById(int id);
+
+    @Insert
+    void insert(SubscriptionModel magazineSubscription);
+
+
+
+
+
+
+    // Removed the un-annotated method
 }

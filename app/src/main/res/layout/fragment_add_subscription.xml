@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".fragments.AddSubscriptionFragment">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#E8D5D5"
+        android:backgroundTint="#C3BDBD"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonAddSubscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:elevation="10dp"
+            android:text="ADD"
+            app:icon="@android:drawable/ic_menu_add"
+            app:iconPadding="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBacKAdd"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:background="@android:drawable/ic_menu_revert"
+            android:backgroundTint="#2B0868" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="#E3E1E1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewSubscriptionTitleRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6750A4"
+            android:elevation="7dp"
+            android:text="Subscription"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+        <EditText
+            android:id="@+id/editTextFirstNameAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter First Name" />
+
+        <EditText
+            android:id="@+id/editTextLastNameAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Last Name" />
+
+        <EditText
+            android:id="@+id/editTextAddressAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address" />
+
+        <CheckBox
+            android:id="@+id/checkBoxMagazine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Magazine" />
+
+        <EditText
+            android:id="@+id/editTextMagazineQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Magazine quantity"
+            android:inputType="number" />
+
+        <CheckBox
+            android:id="@+id/checkBoxNewsPaper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="News Paper" />
+
+        <EditText
+            android:id="@+id/editTextNewsPaperQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter News Paper quantity"
+            android:inputType="number" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -15,12 +15,22 @@ import java.util.List;
 public interface ProductDao {
     @Insert
     void insertProduct(ProductModel product);
+
     @Update
     void updateProduct(ProductModel product);
+
     @Delete
     void deleteProduct(ProductModel product);
+
     @Query("SELECT * FROM products ORDER BY id ASC")
     LiveData<List<ProductModel>> getAllProducts();
+
     @Query("SELECT * FROM products WHERE id = :id")
-    LiveData<List<ProductModel>> getProductById(int id);
+    LiveData<ProductModel> getProductById(int id);
+
+    @Query("SELECT id FROM products WHERE productName = :productName LIMIT 1")
+    long getProductIdByName(String productName);
+
+
+
 }

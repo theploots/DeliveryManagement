@@ -39,7 +39,7 @@ public class DriverViewModel extends AndroidViewModel {
         return allDrivers;
     }
 
-    public LiveData<List<DriverModel>> getDriverById(int id) {
-        return  repository.getDriverById(id);
+    public LiveData<DriverModel> getDriverById(int id) {
+        return repository.getDriverById(id);
     }
 }
