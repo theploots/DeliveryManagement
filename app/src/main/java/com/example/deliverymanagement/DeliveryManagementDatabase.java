@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
         ProductModel.class,
         DriverModel.class,
         RouteDetailsModel.class
-}, version = 2)
+}, version = 2, exportSchema = false)
 public abstract class DeliveryManagementDatabase extends RoomDatabase {
 
     private static DeliveryManagementDatabase instance;

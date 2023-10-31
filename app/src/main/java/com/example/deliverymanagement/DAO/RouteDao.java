@@ -31,4 +31,8 @@ public interface RouteDao {
     @Query("SELECT * FROM routes WHERE driverId IS NULL LIMIT 1")
     RouteModel getAvailableRoute();
 
+    @Query("SELECT * FROM routes WHERE driverId IS NULL")
+    LiveData<List<RouteModel>> getAvailableRoutes();
+
+
 }

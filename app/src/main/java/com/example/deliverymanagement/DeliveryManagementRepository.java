@@ -1,6 +1,8 @@
 package com.example.deliverymanagement;
 
 import android.content.Context;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import com.example.deliverymanagement.DAO.*;
 import com.example.deliverymanagement.models.*;
@@ -60,11 +62,14 @@ public class DeliveryManagementRepository {
      * Insert a new route.
      */
     public void insertRoute(RouteModel route) {
+        // Use the executor service to run the database operation on a separate thread.
         executors.execute(() -> {
             try {
+                // Try to insert the route into the database.
                 routeDao.insertRoute(route);
             } catch (Exception e) {
-                // Handle or log the error for route insertion.
+                // Log any exceptions that occur during the database operation.
+                Log.e("DeliveryRepo", "Error inserting route", e);
             }
         });
     }
@@ -163,9 +168,6 @@ public class DeliveryManagementRepository {
             }
         });
     }
-
-    // And so on for all the remaining methods for product, subscription, and client...
-// ...
 
     // Product Operations
     public void updateProduct(ProductModel product) {
@@ -304,6 +306,11 @@ public class DeliveryManagementRepository {
     public LiveData<List<RouteDetailsModel>> getAllRouteDetails() {
         return allRouteDetails;
     }
+    public LiveData<List<RouteModel>> getAvailableRoutes() {
+        // Simply returning the LiveData directly from the DAO.
+        return routeDao.getAvailableRoutes();
+    }
+
 
     public LiveData<RouteDetailsModel> getRouteDetailById(int id) {
         return routeDetailsDao.getRouteDetailById(id);

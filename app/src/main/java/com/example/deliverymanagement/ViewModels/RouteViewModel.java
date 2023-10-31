@@ -4,6 +4,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.deliverymanagement.DeliveryManagementRepository;
 import com.example.deliverymanagement.models.RouteModel;
 import java.util.List;
@@ -17,7 +19,11 @@ public class RouteViewModel extends AndroidViewModel {
         super(application);
         repository = new DeliveryManagementRepository(application);
         allRoutes = repository.getAllRoutes();
+
+        
     }
+
+
 
     public void insertRoute(RouteModel route) {
         repository.insertRoute(route);
@@ -35,5 +41,8 @@ public class RouteViewModel extends AndroidViewModel {
         return allRoutes;
     }
 
-    // You can add more methods specific to RouteModel if needed
+    public LiveData<List<RouteModel>> getAvailableRoutes() {
+        return repository.getAvailableRoutes();
+    }
+
 }

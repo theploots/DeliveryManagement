@@ -21,8 +21,12 @@ public class RouteModel {
     @ColumnInfo(index = true)
     private Integer driverId; // Made nullable
 
+    @ColumnInfo(name = "route_name")
+    private String name;  // New field for route name
+
     public RouteModel() {
         this.driverId = null;  // No driver associated initially
+        this.name = ""; // Default name is an empty string
     }
 
     public int getId() {
@@ -39,5 +43,13 @@ public class RouteModel {
 
     public void setDriverId(Integer driverId) {
         this.driverId = driverId;
+    }
+
+    public String getName() {
+        return name;   // return the route name
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

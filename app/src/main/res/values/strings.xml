@@ -15,6 +15,7 @@
     <string name="product_id">Product ID</string>
     <string name="quantity">Quantity</string>
     <string name="welcome_to_nlgo">Welcome to NLGO!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_a_route">Select a Route</string>
+
+
 </resources>
