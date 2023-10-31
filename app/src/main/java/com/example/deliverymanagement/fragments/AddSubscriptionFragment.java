@@ -17,9 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.deliverymanagement.DAO.ClientDao;
+import com.example.deliverymanagement.DAO.DriverDao;
 import com.example.deliverymanagement.DAO.ProductDao;
 import com.example.deliverymanagement.DAO.RouteDao;
+import com.example.deliverymanagement.DAO.RouteDetailsDao;
 import com.example.deliverymanagement.DAO.SubscriptionDao;
+import com.example.deliverymanagement.DeliveryManagementDatabase;
 import com.example.deliverymanagement.R;
 import com.example.deliverymanagement.ViewModels.RouteViewModel;
 import com.example.deliverymanagement.models.ClientModel;
@@ -31,6 +34,7 @@ import java.util.List;
 
 public class AddSubscriptionFragment extends Fragment {
 
+
     // Attributes for client and subscription details
     private EditText firstNameAdd, lastNameAdd, addressAdd, magazineQuantity, newsPaperQuantity;
     private CheckBox magazine, newsPaper;
@@ -39,13 +43,16 @@ public class AddSubscriptionFragment extends Fragment {
     private boolean formValid = true;
 
     // DAOs for accessing database operations
+    private RouteDao routeDao;
+    private DriverDao driverDao;
+    private RouteDetailsDao routeDetailsDao;
+
     private ClientDao clientDao;
     private ProductDao productDao;
     private SubscriptionDao subscriptionDao;
 
     // Newly added attributes for route selection
     private Spinner routeSpinner;
-    private RouteDao routeDao; // Ensure this DAO is initialized appropriately
     private RouteViewModel routeViewModel;
 
 
@@ -53,6 +60,15 @@ public class AddSubscriptionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_subscription, container, false);
+
+            // Initialize your DAOs here
+            DeliveryManagementDatabase db = DeliveryManagementDatabase.getInstance(getContext());
+            clientDao = db.clientDao();
+            productDao = db.productDao();
+            subscriptionDao = db.subscriptionDao();
+            routeDao = db.routeDao();
+            driverDao = db.driverDao();
+            routeDetailsDao = db.routeDetailsDao();
 
         // Initialize client and subscription views
         firstNameAdd = rootView.findViewById(R.id.editTextFirstNameAdd);
