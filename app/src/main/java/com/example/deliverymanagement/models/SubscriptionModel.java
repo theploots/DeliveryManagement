@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.ColumnInfo;
-
 @Entity(tableName = "subscriptions",
         foreignKeys = {
                 @ForeignKey(
@@ -24,29 +23,20 @@ public class SubscriptionModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-
-
     @ColumnInfo(index = true)
     private int clientId;
 
     @ColumnInfo(index = true)
     private int productId;
 
+    private int quantityMagazine;
+    private int quantityNewsPaper;
 
-
-    private int quantity;
-
-
-   // private int quantityNewsPaper;
-
-   // private int quantityMagazine;
-
-    public SubscriptionModel(int clientId, int productId,int quantity /*int quantityMagazine, int quantityNewsPaper*/) {
+    public SubscriptionModel(int clientId, int productId, int quantityMagazine, int quantityNewsPaper) {
         this.clientId = clientId;
         this.productId = productId;
-        this.quantity = quantity;
-      //  this.quantityMagazine = quantityMagazine;
-      //  this.quantityNewsPaper = quantityNewsPaper;
+        this.quantityMagazine = quantityMagazine;
+        this.quantityNewsPaper = quantityNewsPaper;
     }
 
 
@@ -62,11 +52,7 @@ public class SubscriptionModel {
         return productId;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    /*
     public int getQuantityMagazine() {
         return quantityMagazine;
     }
@@ -74,7 +60,7 @@ public class SubscriptionModel {
     public int getQuantityNewsPaper() {
         return quantityNewsPaper;
     }
-    */
+
 
 
     public void setId(int id) {

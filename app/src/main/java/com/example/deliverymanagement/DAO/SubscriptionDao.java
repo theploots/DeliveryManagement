@@ -28,13 +28,17 @@ public interface SubscriptionDao {
     @Query("SELECT * FROM subscriptions WHERE id = :id")
     LiveData<SubscriptionModel> getSubscriptionById(int id);
 
-    @Insert
-    void insert(SubscriptionModel magazineSubscription);
+    // Add a method to get all subscriptions for a specific client
+    @Query("SELECT * FROM subscriptions WHERE clientId = :clientId")
+    LiveData<List<SubscriptionModel>> getSubscriptionsByClientId(int clientId);
+
+    // Add a method to get all subscriptions for a specific product
+    @Query("SELECT * FROM subscriptions WHERE productId = :productId")
+    LiveData<List<SubscriptionModel>> getSubscriptionsByProductId(int productId);
+
+    // If you want to fetch subscriptions for a client and specific product
+    @Query("SELECT * FROM subscriptions WHERE clientId = :clientId AND productId = :productId")
+    LiveData<List<SubscriptionModel>> getSubscriptionsByClientAndProductId(int clientId, int productId);
 
 
-
-
-
-
-    // Removed the un-annotated method
 }

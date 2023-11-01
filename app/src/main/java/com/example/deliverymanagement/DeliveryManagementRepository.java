@@ -196,11 +196,13 @@ public class DeliveryManagementRepository {
 
     // Subscription Operations
     public void insertSubscription(SubscriptionModel subscription) {
+        Log.d("DeliveryRepo", "Inserting subscription: " + subscription.toString());
         executors.execute(() -> {
             try {
                 subscriptionDao.insertSubscription(subscription);
             } catch (Exception e) {
                 // Handle or log the error for subscription insertion.
+                Log.e("DeliveryRepo", "Error inserting subscription", e);
             }
         });
     }

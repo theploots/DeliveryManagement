@@ -26,6 +26,7 @@ import com.example.deliverymanagement.DAO.SubscriptionDao;
 import com.example.deliverymanagement.DeliveryManagementDatabase;
 import com.example.deliverymanagement.R;
 import com.example.deliverymanagement.ViewModels.RouteViewModel;
+import com.example.deliverymanagement.ViewModels.SubscriptionViewModel;
 import com.example.deliverymanagement.models.ClientModel;
 import com.example.deliverymanagement.models.RouteModel;
 import com.example.deliverymanagement.models.SubscriptionModel;
@@ -56,6 +57,8 @@ public class AddSubscriptionFragment extends Fragment {
     // Newly added attributes for route selection
     private Spinner routeSpinner;
     private RouteViewModel routeViewModel;
+    private SubscriptionViewModel subscriptionViewModel;
+
 
 
     LiveData<List<RouteModel>> allAvailableRoutes;
@@ -102,6 +105,9 @@ public class AddSubscriptionFragment extends Fragment {
 
         // Initialize the LiveData
         allAvailableRoutes = routeDao.getAvailableRoutes();
+        // Initialize the ViewModel
+        subscriptionViewModel = new ViewModelProvider(requireActivity()).get(SubscriptionViewModel.class);
+
 
         // Observe changes in available routes data
         allAvailableRoutes.observe(getViewLifecycleOwner(), routes -> {
@@ -126,62 +132,46 @@ public class AddSubscriptionFragment extends Fragment {
         });
 
 
-        routeViewModel = new ViewModelProvider(requireActivity()).get(RouteViewModel.class);
-
-        // Observe changes in available routes data and update the Add button's state
-        // Choose ViewModel to manage your data, and remove the direct DAO observation.
-       /* routeViewModel.getAvailableRoutes().observe(getViewLifecycleOwner(), routes -> {
-            List<String> routeNames = new ArrayList<>();
-            for (RouteModel route : routes) {
-                routeNames.add(route.getName());
-            }
-            ArrayAdapter<String> routeAdapter1 = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, routeNames);
-            routeAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            routeSpinner.setAdapter(routeAdapter1);
-
-            // Handle enabling/disabling the addSubscription button here.
-            if (routes.isEmpty()) {
-                addSubscription.setEnabled(false);
-            } else {
-                addSubscription.setEnabled(true);
-            }
-            // Inside onCreateView
-
-*/
-
 
         // Click listener for adding subscription
         addSubscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 formValid = true;
+                StringBuilder errorMessage = new StringBuilder();
 
                 if (!magazine.isChecked() && !newsPaper.isChecked()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Select Type of Product", Toast.LENGTH_LONG).show();
+                    errorMessage.append("Please Select Type of Product\n");
                 }
                 if (magazine.isChecked() && magazineQuantity.getText().toString().trim().isEmpty()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Enter Magazine Quantity", Toast.LENGTH_LONG).show();
+                    errorMessage.append("Enter Magazine Quantity\n");
                 }
                 if (newsPaper.isChecked() && newsPaperQuantity.getText().toString().trim().isEmpty()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Enter News Paper Quantity", Toast.LENGTH_LONG).show();
+                    errorMessage.append("News Paper Quantity\n");
                 }
                 if (firstNameAdd.getText().toString().trim().isEmpty()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Enter First Name", Toast.LENGTH_LONG).show();
+                    errorMessage.append("Please Enter First Name\n");
                 }
                 if (lastNameAdd.getText().toString().trim().isEmpty()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Enter Last Name", Toast.LENGTH_LONG).show();
+                    errorMessage.append("Please Enter Last Name\n");
                 }
                 if (addressAdd.getText().toString().trim().isEmpty()) {
                     formValid = false;
-                    Toast.makeText(getContext(), "Please Enter Address", Toast.LENGTH_LONG).show();
+                    errorMessage.append("Please Enter Address\n");
+                }
+
+                if (!formValid) {
+                    Toast.makeText(getContext(), errorMessage.toString(), Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 if (formValid) {
+                    new Thread(() -> {
                     String firstName = firstNameAdd.getText().toString().trim();
                     String lastName = lastNameAdd.getText().toString().trim();
                     String address = addressAdd.getText().toString().trim();
@@ -190,34 +180,56 @@ public class AddSubscriptionFragment extends Fragment {
                     ClientModel client = new ClientModel(firstName, lastName, address);
                     long clientId = clientDao.insertClient(client);
 
+
+                    int magazineQuantityValue = 0;
                     if (magazine.isChecked()) {
-                        int magQty = Integer.parseInt(magazineQuantity.getText().toString());
-                        long productId = productDao.getProductIdByName("Magazine");
-                        LiveData<List<RouteModel>> routeId = routeDao.getAvailableRoutes();
-                        SubscriptionModel magazineSubscription = new SubscriptionModel((int) clientId, (int) productId, magQty);
-                        subscriptionDao.insert(magazineSubscription);
+                        String magazineQuantityStr = magazineQuantity.getText().toString().trim();
+                        if (!magazineQuantityStr.isEmpty()) {
+                            try {
+                                magazineQuantityValue = Integer.parseInt(magazineQuantityStr);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getContext(), "Please enter a valid magazine quantity.", Toast.LENGTH_LONG).show();
+                                return;  // stop further processing if the input is not valid
+                            }
+
+                            long productId = productDao.getProductIdByName("Magazine");
+                            SubscriptionModel magazineSubscription = new SubscriptionModel((int) clientId, (int) productId, magazineQuantityValue, magazineQuantityValue);
+                            subscriptionViewModel.insertSubscription(magazineSubscription);
+                        }
                     }
 
+
+                    int newsPaperQuantityValue = 0;
                     if (newsPaper.isChecked()) {
-                        int newsQty = Integer.parseInt(newsPaperQuantity.getText().toString());
-                        long productId = productDao.getProductIdByName("Newspaper");
-                        SubscriptionModel newspaperSubscription = new SubscriptionModel((int) clientId, (int) productId, newsQty);
-                        subscriptionDao.insert(newspaperSubscription);
+                        String newsPaperQuantityStr = newsPaperQuantity.getText().toString().trim();
+                        if (!newsPaperQuantityStr.isEmpty()) {
+                            try {
+                                newsPaperQuantityValue = Integer.parseInt(newsPaperQuantityStr);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getContext(), "Please enter a valid newspaper quantity.", Toast.LENGTH_LONG).show();
+                                return;  // stop further processing if the input is not valid
+                            }
+
+                            long productId = productDao.getProductIdByName("Newspaper");
+                            SubscriptionModel newspaperSubscription = new SubscriptionModel((int) clientId, (int) productId, newsPaperQuantityValue, magazineQuantityValue);
+                            subscriptionViewModel.insertSubscription(newspaperSubscription);
+                        }
                     }
 
-                    Toast.makeText(getContext(), "Subscription Added Successfully", Toast.LENGTH_LONG).show();
+
+
+                        getActivity().runOnUiThread(() -> {
+                            Toast.makeText(getContext(), "Subscription Added Successfully", Toast.LENGTH_LONG).show();
+                        });
+                    }).start();
 
                 }
             }
 
         });
 
-
-        backAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
+        backAdd.setOnClickListener(view -> {
+            getActivity().getSupportFragmentManager().popBackStack();
         });
 
 

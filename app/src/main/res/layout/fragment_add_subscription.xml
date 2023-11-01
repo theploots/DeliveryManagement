@@ -61,30 +61,46 @@
             android:id="@+id/editTextFirstNameAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:hint="Enter First Name" />
 
         <EditText
             android:id="@+id/editTextLastNameAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:hint="Enter Last Name" />
 
         <EditText
             android:id="@+id/editTextAddressAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:hint="Enter Address" />
+
 
         <CheckBox
             android:id="@+id/checkBoxMagazine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="Magazine" />
 
         <EditText
             android:id="@+id/editTextMagazineQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:hint="Enter Magazine quantity"
             android:inputType="number" />
 
@@ -92,12 +108,18 @@
             android:id="@+id/checkBoxNewsPaper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="News Paper" />
 
         <EditText
             android:id="@+id/editTextNewsPaperQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:hint="Enter News Paper quantity"
             android:inputType="number" />
 
@@ -113,7 +135,10 @@
             android:id="@+id/spinnerRoutes"
             android:prompt="@string/select_a_route"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
 
     </LinearLayout>
 </LinearLayout>
