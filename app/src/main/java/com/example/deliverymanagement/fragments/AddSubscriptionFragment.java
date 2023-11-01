@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.deliverymanagement.DAO.ClientDao;
@@ -31,6 +32,7 @@ import com.example.deliverymanagement.models.SubscriptionModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class AddSubscriptionFragment extends Fragment {
 
@@ -56,19 +58,29 @@ public class AddSubscriptionFragment extends Fragment {
     private RouteViewModel routeViewModel;
 
 
+    LiveData<List<RouteModel>> allAvailableRoutes;
+
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add_subscription, container, false);
 
-            // Initialize your DAOs here
-            DeliveryManagementDatabase db = DeliveryManagementDatabase.getInstance(getContext());
-            clientDao = db.clientDao();
-            productDao = db.productDao();
-            subscriptionDao = db.subscriptionDao();
-            routeDao = db.routeDao();
-            driverDao = db.driverDao();
-            routeDetailsDao = db.routeDetailsDao();
+
+        // Initialize your DAOs here
+        DeliveryManagementDatabase db = DeliveryManagementDatabase.getInstance(getContext());
+        clientDao = db.clientDao();
+        productDao = db.productDao();
+        subscriptionDao = db.subscriptionDao();
+        routeDao = db.routeDao();
+        driverDao = db.driverDao();
+        routeDetailsDao = db.routeDetailsDao();
 
         // Initialize client and subscription views
         firstNameAdd = rootView.findViewById(R.id.editTextFirstNameAdd);
@@ -84,30 +96,48 @@ public class AddSubscriptionFragment extends Fragment {
         // Initialize the spinner for routes
         routeSpinner = rootView.findViewById(R.id.spinnerRoutes);
 
-        // Observe changes in routes data and update the spinner
-        routeDao.getAllRoutes().observe(getViewLifecycleOwner(), routes -> {
-            List<String> routeNames = new ArrayList<>();
+        ArrayAdapter<Integer> routeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        routeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        routeSpinner.setAdapter(routeAdapter);
+
+        // Initialize the LiveData
+        allAvailableRoutes = routeDao.getAvailableRoutes();
+
+        // Observe changes in available routes data
+        allAvailableRoutes.observe(getViewLifecycleOwner(), routes -> {
+            List<Integer> routeIds = new ArrayList<>();
             for (RouteModel route : routes) {
-                routeNames.add(route.getName()); // Assuming RouteModel has a getName() method
+                routeIds.add(route.getId());
             }
 
-            ArrayAdapter<String> routeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, routeNames);
-            routeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            routeSpinner.setAdapter(routeAdapter);
+            // Update the ArrayAdapter with the route IDs
+            routeAdapter.clear();
+            routeAdapter.addAll(routeIds);
+
+            // Notify the adapter that the data set has changed
+            routeAdapter.notifyDataSetChanged();
+
+            // Handle enabling/disabling the addSubscription button here.
+            if (routeIds.isEmpty()) {
+                addSubscription.setEnabled(false);
+            } else {
+                addSubscription.setEnabled(true);
+            }
         });
+
 
         routeViewModel = new ViewModelProvider(requireActivity()).get(RouteViewModel.class);
 
         // Observe changes in available routes data and update the Add button's state
         // Choose ViewModel to manage your data, and remove the direct DAO observation.
-        routeViewModel.getAvailableRoutes().observe(getViewLifecycleOwner(), routes -> {
+       /* routeViewModel.getAvailableRoutes().observe(getViewLifecycleOwner(), routes -> {
             List<String> routeNames = new ArrayList<>();
             for (RouteModel route : routes) {
                 routeNames.add(route.getName());
             }
-            ArrayAdapter<String> routeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, routeNames);
-            routeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            routeSpinner.setAdapter(routeAdapter);
+            ArrayAdapter<String> routeAdapter1 = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, routeNames);
+            routeAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            routeSpinner.setAdapter(routeAdapter1);
 
             // Handle enabling/disabling the addSubscription button here.
             if (routes.isEmpty()) {
@@ -115,7 +145,9 @@ public class AddSubscriptionFragment extends Fragment {
             } else {
                 addSubscription.setEnabled(true);
             }
-        });
+            // Inside onCreateView
+
+*/
 
 
         // Click listener for adding subscription
@@ -161,14 +193,15 @@ public class AddSubscriptionFragment extends Fragment {
                     if (magazine.isChecked()) {
                         int magQty = Integer.parseInt(magazineQuantity.getText().toString());
                         long productId = productDao.getProductIdByName("Magazine");
-                        SubscriptionModel magazineSubscription = new SubscriptionModel((int)clientId, (int)productId, magQty);
+                        LiveData<List<RouteModel>> routeId = routeDao.getAvailableRoutes();
+                        SubscriptionModel magazineSubscription = new SubscriptionModel((int) clientId, (int) productId, magQty);
                         subscriptionDao.insert(magazineSubscription);
                     }
 
                     if (newsPaper.isChecked()) {
                         int newsQty = Integer.parseInt(newsPaperQuantity.getText().toString());
                         long productId = productDao.getProductIdByName("Newspaper");
-                        SubscriptionModel newspaperSubscription = new SubscriptionModel((int)clientId, (int)productId, newsQty);
+                        SubscriptionModel newspaperSubscription = new SubscriptionModel((int) clientId, (int) productId, newsQty);
                         subscriptionDao.insert(newspaperSubscription);
                     }
 
@@ -176,6 +209,7 @@ public class AddSubscriptionFragment extends Fragment {
 
                 }
             }
+
         });
 
 
@@ -186,6 +220,10 @@ public class AddSubscriptionFragment extends Fragment {
             }
         });
 
+
         return rootView;
+
     }
 }
+
+

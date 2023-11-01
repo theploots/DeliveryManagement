@@ -24,19 +24,31 @@ public class SubscriptionModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+
+
     @ColumnInfo(index = true)
     private int clientId;
 
     @ColumnInfo(index = true)
     private int productId;
 
+
+
     private int quantity;
 
-    public SubscriptionModel(int clientId, int productId, int quantity) {
+
+   // private int quantityNewsPaper;
+
+   // private int quantityMagazine;
+
+    public SubscriptionModel(int clientId, int productId,int quantity /*int quantityMagazine, int quantityNewsPaper*/) {
         this.clientId = clientId;
         this.productId = productId;
         this.quantity = quantity;
+      //  this.quantityMagazine = quantityMagazine;
+      //  this.quantityNewsPaper = quantityNewsPaper;
     }
+
 
     public int getId() {
         return id;
@@ -53,6 +65,17 @@ public class SubscriptionModel {
     public int getQuantity() {
         return quantity;
     }
+
+    /*
+    public int getQuantityMagazine() {
+        return quantityMagazine;
+    }
+
+    public int getQuantityNewsPaper() {
+        return quantityNewsPaper;
+    }
+    */
+
 
     public void setId(int id) {
         this.id = id;
