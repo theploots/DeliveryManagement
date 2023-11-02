@@ -1,66 +1,66 @@
 package com.example.deliverymanagement.fragments;
 
 import android.os.Bundle;
-
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.example.deliverymanagement.DeliveryManagementDatabase;
 import com.example.deliverymanagement.R;
+import com.example.deliverymanagement.ViewModels.ProductViewModel;
+import com.example.deliverymanagement.adapters.ProductAdapter;
+import com.example.deliverymanagement.models.ProductModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductListerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class ProductListerFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ListView listViewProducts;
+    private ProductAdapter productAdapter;
+    private ProductViewModel productViewModel;
 
     public ProductListerFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductListerFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductListerFragment newInstance(String param1, String param2) {
-        ProductListerFragment fragment = new ProductListerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listViewProducts = view.findViewById(R.id.listViewProducts);
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
+        // Initialize the LiveData properly
+        LiveData<List<ProductModel>> allProductsLiveData = productViewModel.getAllProducts();
+        allProductsLiveData.observe(getViewLifecycleOwner(), productList -> {
+            // Update your ListView adapter with the new product list
+            productAdapter = new ProductAdapter(getContext(), productList);
+            listViewProducts.setAdapter(productAdapter);
+        });
+
+        // Here you can set an onItemClick listener if needed to perform actions when a product is clicked
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_product_lister, container, false);
+
+        // Perform initialization of your ListView and ViewModel here
+
+
+
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_lister, container, false);
+    // Replace this with your actual database query to get product data
+    private List<ProductModel> getProductDataFromDatabase() {
+        // Fetch the product list from the database and return it
+        return DeliveryManagementDatabase.getInstance(requireContext()).productDao().getAllProducts().getValue();
     }
 }

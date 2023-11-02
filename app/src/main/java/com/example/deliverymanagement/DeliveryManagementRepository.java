@@ -360,14 +360,4 @@ public class DeliveryManagementRepository {
     public LiveData<List<Integer>> getAllDriverIds() {
         return driverDao.getAllDriverIds();
     }
-
-    public void addDriver(DriverModel newDriver) {
-        executors.execute(() -> {
-            try {
-                driverDao.insertDriver(newDriver);
-            } catch (Exception e) {
-                // Handle or log the error for driver insertion.
-            }
-        });
-    }
 }

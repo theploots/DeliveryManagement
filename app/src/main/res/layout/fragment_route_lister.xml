@@ -1,14 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RouteListerFragment">
+    android:orientation="horizontal">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <!-- Left part for the list of routes, takes 1/3 of the width -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <!-- Title for ROUTE -->
+
+        <TextView
+            android:id="@+id/textViewTitleDriverFragment3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6750A4"
+            android:gravity="center_horizontal"
+            android:textColor="#FBFBFB"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DAFEF9"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="DRIVER:"
+            android:textSize="16sp" />
+
+        <ListView
+            android:id="@+id/routesListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <!-- Right part for the route details, takes 2/3 of the width -->
+    <LinearLayout
+        android:id="@+id/routeDetailsContainer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <!-- Title for DRIVER -->
+        <TextView
+            android:id="@+id/textViewTitleDriverFragment2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6750A4"
+            android:gravity="center_horizontal"
+            android:text="Route"
+            android:textColor="#FBFBFB"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Delivery person's name -->
+        <TextView
+            android:id="@+id/deliveryPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="8dp" />
+
+        <!-- List of addresses and deliveries -->
+        <ListView
+            android:id="@+id/addressesListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

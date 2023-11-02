@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.deliverymanagement.R;
 import com.example.deliverymanagement.ViewModels.DriverViewModel;
+import com.example.deliverymanagement.ViewModels.RouteViewModel;
 import com.example.deliverymanagement.models.DriverModel;
 import com.example.deliverymanagement.models.RouteModel;
 
@@ -42,6 +43,7 @@ public class AddDriverFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_add_driver, container, false);
 
+
         // Initialize UI components
         firstNameEditText = rootView.findViewById(R.id.editTextFirstNameDriver);
         lastNameEditText = rootView.findViewById(R.id.editTextLastNameDriver);
@@ -63,13 +65,7 @@ public class AddDriverFragment extends Fragment {
         routeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         routeSpinner.setAdapter(routeAdapter);
 
-        // Observe the LiveData for routes from the ViewModel
-        rootView.getRoutes().observe(getViewLifecycleOwner(), routes -> {
-            // Update the spinner with the routes
-            routeAdapter.clear();
-            routeAdapter.addAll(routes);
-            routeAdapter.notifyDataSetChanged();
-        });
+
 
         // Set up the button click listener
         addButton.setOnClickListener(v -> {
@@ -85,7 +81,7 @@ public class AddDriverFragment extends Fragment {
                 );
 
                 // Add the new driver using the ViewModel
-                driverViewModel.addDriver(newDriver);
+//                driverViewModel.addDriver(newDriver);
 
                 // Clear fields after adding
                 clearFields();
@@ -94,8 +90,11 @@ public class AddDriverFragment extends Fragment {
 
         // Set up the back button click listener
         backButton.setOnClickListener(v -> {
-            // Handle the back button action
-            // For example, you might want to close the fragment or navigate back
+            // Check if the fragment is part of a FragmentActivity
+            if (isAdded() && getActivity() != null) {
+                // Use the FragmentManager to pop the current fragment off of the back stack
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
         });
 
         return rootView;
@@ -108,6 +107,8 @@ public class AddDriverFragment extends Fragment {
      */
     private boolean validateInput() {
         // Method content remains the same
+
+        return false;
     }
 
     /**

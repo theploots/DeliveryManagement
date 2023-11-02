@@ -47,9 +47,9 @@ public class DriverViewModel extends AndroidViewModel {
         return repository.getAllDriverIds();
     }
 
-    public void addDriver(DriverModel newDriver) {
-        repository.addDriver(newDriver);
-    }
+//    public void addDriver(DriverModel newDriver) {
+//        repository.addDriver(newDriver);
+//    }
 
 
 

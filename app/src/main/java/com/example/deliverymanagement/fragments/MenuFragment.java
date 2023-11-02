@@ -34,9 +34,8 @@ public class MenuFragment extends Fragment {
         Button btnAddRoute = view.findViewById(R.id.buttonAddRoute);
         Button btnAddSubscription = view.findViewById(R.id.MenuAddSubscription);
         Button btnAddDriver = view.findViewById(R.id.buttonAddDriver);
-        Button btnRemoveSubscription = view.findViewById(R.id.buttonRemove);
-
         Button btnLister = view.findViewById(R.id.buttonList);
+        Button btnRemoveSubscription = view.findViewById(R.id.buttonRemove);
         Button btnQuit = view.findViewById(R.id.buttonQuit);
 
         // Setting onClickListeners

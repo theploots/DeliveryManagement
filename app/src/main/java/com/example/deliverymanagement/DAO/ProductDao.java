@@ -28,8 +28,14 @@ public interface ProductDao {
     @Query("SELECT * FROM products WHERE id = :id")
     LiveData<ProductModel> getProductById(int id);
 
+
+
+
     @Query("SELECT id FROM products WHERE productName = :productName LIMIT 1")
     long getProductIdByName(String productName);
+
+
+
 
 
 

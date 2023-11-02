@@ -43,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:background="#E3E1E1"
+        android:background="#DBFFFA"
         android:orientation="vertical">
 
         <TextView
@@ -61,8 +61,8 @@
             android:id="@+id/editTextFirstNameAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:hint="Enter First Name" />
 
@@ -70,8 +70,8 @@
             android:id="@+id/editTextLastNameAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:hint="Enter Last Name" />
 
@@ -79,8 +79,8 @@
             android:id="@+id/editTextAddressAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:hint="Enter Address" />
 
@@ -89,8 +89,8 @@
             android:id="@+id/checkBoxMagazine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:text="Magazine" />
 
@@ -98,8 +98,8 @@
             android:id="@+id/editTextMagazineQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:hint="Enter Magazine quantity"
             android:inputType="number" />
@@ -108,8 +108,8 @@
             android:id="@+id/checkBoxNewsPaper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:text="News Paper" />
 
@@ -117,8 +117,8 @@
             android:id="@+id/editTextNewsPaperQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:hint="Enter News Paper quantity"
             android:inputType="number" />
@@ -126,19 +126,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a Route"
             android:paddingTop="8dp"
             android:paddingBottom="4dp"
+            android:text="Select a Route"
             android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinnerRoutes"
-            android:prompt="@string/select_a_route"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:prompt="@string/select_a_route" />
 
     </LinearLayout>
 </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/desktop_wallpaper_neon_by_backgrounds_cool_neon_phone_thumbnail"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".fragments.MenuFragment">
@@ -74,4 +74,5 @@
             android:elevation="10dp"
             android:text="Quit App"
             android:textSize="20sp" />
+
 </LinearLayout>

@@ -10,14 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.deliverymanagement.models.ProductModel;
+
 import java.util.List;
 
 public class ProductAdapter extends ArrayAdapter<Integer> {
 
-    private final List<Integer> productIds;
+    private final List<ProductModel> productIds;
 
-    public ProductAdapter(Context context, List<Integer> productIds) {
-        super(context, 0, productIds);
+    public ProductAdapter(Context context, List<ProductModel> productIds) {
+        super(context, 0);
         this.productIds = productIds;
     }
 
@@ -28,7 +30,7 @@ public class ProductAdapter extends ArrayAdapter<Integer> {
             convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        Integer productId = productIds.get(position);
+        Integer productId = productIds.get(position).getId();
         TextView textView = convertView.findViewById(android.R.id.text1);
         textView.setText(String.valueOf(productId));
 
