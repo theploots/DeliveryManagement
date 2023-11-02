@@ -52,6 +52,7 @@ public class DriverViewModel extends AndroidViewModel {
 //    }
 
 
-
-
+    public void assignDriverToRoute(int id, int routeId) {
+        repository.assignDriverToRoute(id, routeId);
+    }
 }

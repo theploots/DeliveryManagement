@@ -16,6 +16,8 @@ import com.example.deliverymanagement.models.RouteModel;
 
 public class MenuFragment extends Fragment {
 
+
+
     private DeliveryManagementRepository repository;
 
     @Override
@@ -57,8 +59,10 @@ public class MenuFragment extends Fragment {
     }
 
     private void addRouteToDatabase() {
+        Button btnAddDriver = requireView().findViewById(R.id.buttonAddDriver);
         RouteModel newRoute = new RouteModel();
         repository.insertRoute(newRoute);
+        btnAddDriver.setEnabled(true);
 
         Toast.makeText(requireContext(), "Route added successfully!", Toast.LENGTH_SHORT).show();
     }

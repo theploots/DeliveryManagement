@@ -360,4 +360,28 @@ public class DeliveryManagementRepository {
     public LiveData<List<Integer>> getAllDriverIds() {
         return driverDao.getAllDriverIds();
     }
+
+    public void addDriver(DriverModel newDriver) {
+        executors.execute(() -> {
+            try {
+                driverDao.insertDriver(newDriver);
+            } catch (Exception e) {
+                // Handle or log the error for driver insertion.
+            }
+        });
+    }
+
+    public LiveData<RouteModel> getRouteById(int routeId) {
+        return routeDao.getRouteById(routeId);
+    }
+
+    public void assignDriverToRoute(int id, int routeId) {
+        executors.execute(() -> {
+            try {
+                routeDao.assignDriverToRoute(id, routeId);
+            } catch (Exception e) {
+                // Handle or log the error for route update.
+            }
+        });
+    }
 }

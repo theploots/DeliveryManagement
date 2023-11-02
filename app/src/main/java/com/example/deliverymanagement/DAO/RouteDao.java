@@ -22,6 +22,9 @@ public interface RouteDao {
     @Delete
     void deleteRoute(RouteModel route);
 
+    @Query("UPDATE routes SET driverId = :driverId WHERE id = :routeId")
+    void assignDriverToRoute(int routeId, int driverId);
+
     @Query("SELECT * FROM routes ORDER BY id ASC")
     LiveData<List<RouteModel>> getAllRoutes();
 
