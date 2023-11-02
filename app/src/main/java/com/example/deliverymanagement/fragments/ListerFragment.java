@@ -37,10 +37,10 @@ public class ListerFragment extends Fragment {
         drivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //    FragmentManager fragmentManager = getChildFragmentManager();
-                //  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                //  fragmentTransaction.add(R.id.frame_lister, new DriverListerFragment());
-                //  fragmentTransaction.commit();
+                  FragmentManager fragmentManager = getChildFragmentManager();
+                  FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                  fragmentTransaction.add(R.id.frame_lister, new DriversFragment());
+                  fragmentTransaction.commit();
             }
         });
 

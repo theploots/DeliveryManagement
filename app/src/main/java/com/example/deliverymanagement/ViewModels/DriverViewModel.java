@@ -43,6 +43,10 @@ public class DriverViewModel extends AndroidViewModel {
         return repository.getDriverById(id);
     }
 
+    public LiveData<List<Integer>> getAllDriverIds() {
+        return repository.getAllDriverIds();
+    }
+
     public void addDriver(DriverModel newDriver) {
         repository.addDriver(newDriver);
     }

@@ -8,18 +8,26 @@
     android:orientation="horizontal"
     tools:context=".fragments.DriversFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDriver"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <!-- Add your list of subscribers here (e.g., RecyclerView, ListView) -->
+        <!-- Replace with your subscriber list view -->
+        <ListView
+            android:id="@+id/driversListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="284dp"
         android:layout_height="match_parent"
-        android:background="#FBFAFA"
+        android:background="#D6D6D6"
         android:orientation="vertical">
 
         <TextView
@@ -30,31 +38,134 @@
             android:gravity="center_horizontal"
             android:text="Driver"
             android:textColor="#FBFBFB"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewDriverFirstTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="First Name:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewDriverFirstFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDriverLastTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Last Name:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewDriverLastFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDriverAddressTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:text="Address:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewDriverAddressFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewTelephoneTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Telephone:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewTelephoneFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewRouteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Route:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewRouteFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="TextView"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>
 

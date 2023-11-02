@@ -357,6 +357,10 @@ public class DeliveryManagementRepository {
         return productDao.getProductById(productId);
     }
 
+    public LiveData<List<Integer>> getAllDriverIds() {
+        return driverDao.getAllDriverIds();
+    }
+
     public void addDriver(DriverModel newDriver) {
         executors.execute(() -> {
             try {

@@ -9,21 +9,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.deliverymanagement.R;
-import com.example.deliverymanagement.models.DriverModel;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class DriverAdapter extends ArrayAdapter<Integer> {
+public class ProductAdapter extends ArrayAdapter<Integer> {
 
-    private final List<Integer> driverIds;
+    private final List<Integer> productIds;
 
-    public DriverAdapter(Context context, List<Integer> driverIds) {
-        super(context, 0, driverIds);
-        this.driverIds = driverIds;
+    public ProductAdapter(Context context, List<Integer> productIds) {
+        super(context, 0, productIds);
+        this.productIds = productIds;
     }
 
     @NonNull
@@ -33,12 +28,10 @@ public class DriverAdapter extends ArrayAdapter<Integer> {
             convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        Integer driverId = driverIds.get(position);
+        Integer productId = productIds.get(position);
         TextView textView = convertView.findViewById(android.R.id.text1);
-        textView.setText(String.valueOf(driverId));
+        textView.setText(String.valueOf(productId));
 
         return convertView;
     }
-
-
 }
