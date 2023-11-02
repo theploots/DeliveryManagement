@@ -356,4 +356,14 @@ public class DeliveryManagementRepository {
     public LiveData<ProductModel> getProductById(int productId) {
         return productDao.getProductById(productId);
     }
+
+    public void addDriver(DriverModel newDriver) {
+        executors.execute(() -> {
+            try {
+                driverDao.insertDriver(newDriver);
+            } catch (Exception e) {
+                // Handle or log the error for driver insertion.
+            }
+        });
+    }
 }

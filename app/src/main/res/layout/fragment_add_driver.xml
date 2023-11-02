@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name=".fragments.AddDriverFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="fragment_add_driver">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#E8D5D5"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonAddDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:elevation="10dp"
+            android:text="ADD"
+            app:icon="@android:drawable/ic_menu_add"
+            app:iconPadding="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBackDriver"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="3dp"
+            android:background="@android:drawable/ic_menu_revert"
+            android:backgroundTint="#2B0868" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="#E3E1E1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewDriverTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6750A4"
+            android:elevation="7dp"
+            android:text="Delivery Driver"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textViewFirstNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="First Name"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextFirstNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:cursorVisible="true"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="Enter your first name"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textViewLastNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Last Name"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextLastNameDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:cursorVisible="true"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="Enter your Last name"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textViewAddressDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Address"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextAddressDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="Format: 111 apple st, NY, USA,90210"
+            android:inputType="text"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textViewTelephoneDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Telephone"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextTelephoneDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="+1-111-111-1111"
+            android:inputType="phone"
+            android:paddingLeft="3dp" />
+
+        <TextView
+            android:id="@+id/textViewRouteDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Route"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editTextRouteDriver"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint=""
+            android:inputType="phone"
+            android:paddingLeft="3dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select a Route"
+            android:paddingTop="15dp"
+            android:paddingBottom="4dp"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerRoutes"
+            android:prompt="@string/select_a_route"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

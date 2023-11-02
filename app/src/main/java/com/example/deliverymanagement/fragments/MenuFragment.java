@@ -36,8 +36,6 @@ public class MenuFragment extends Fragment {
         Button btnAddDriver = view.findViewById(R.id.buttonAddDriver);
         Button btnRemoveSubscription = view.findViewById(R.id.buttonRemove);
 
-
-
         Button btnLister = view.findViewById(R.id.buttonList);
         Button btnQuit = view.findViewById(R.id.buttonQuit);
 
@@ -46,8 +44,7 @@ public class MenuFragment extends Fragment {
         btnAddSubscription.setOnClickListener(v -> openFragment(new AddSubscriptionFragment()));
         btnRemoveSubscription.setOnClickListener(v -> openFragment(new RemoveSubscriptionFragment()));
         btnLister.setOnClickListener(v -> openFragment(new ListerFragment()));
-        btnAddDriver.setOnClickListener(v -> openFragment(new DriversFragment()));
-        // Add other listeners similar to the above lines
+        btnAddDriver.setOnClickListener(v -> openFragment(new AddDriverFragment()));
 
         // Initial setup for the "Add Driver" button
         RouteModel availableRoute = repository.getAvailableRoute();
