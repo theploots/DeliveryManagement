@@ -45,6 +45,8 @@ public class MenuFragment extends Fragment {
         btnAddRoute.setOnClickListener(v -> addRouteToDatabase());
         btnAddSubscription.setOnClickListener(v -> openFragment(new AddSubscriptionFragment()));
         btnRemoveSubscription.setOnClickListener(v -> openFragment(new RemoveSubscriptionFragment()));
+        btnLister.setOnClickListener(v -> openFragment(new ListerFragment()));
+        btnAddDriver.setOnClickListener(v -> openFragment(new DriversFragment()));
         // Add other listeners similar to the above lines
 
         // Initial setup for the "Add Driver" button

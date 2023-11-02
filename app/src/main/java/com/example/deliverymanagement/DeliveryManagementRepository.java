@@ -348,4 +348,12 @@ public class DeliveryManagementRepository {
             return null;
         }
     }
+
+    public LiveData<List<Integer>> getAllSubscriptionIds() {
+        return subscriptionDao.getAllSubscriptionIds();
+    }
+
+    public LiveData<ProductModel> getProductById(int productId) {
+        return productDao.getProductById(productId);
+    }
 }

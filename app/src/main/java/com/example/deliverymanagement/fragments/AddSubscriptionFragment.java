@@ -182,6 +182,7 @@ public class AddSubscriptionFragment extends Fragment {
 
 
                     int magazineQuantityValue = 0;
+
                     if (magazine.isChecked()) {
                         String magazineQuantityStr = magazineQuantity.getText().toString().trim();
                         if (!magazineQuantityStr.isEmpty()) {

@@ -45,7 +45,7 @@ public class SubscriptionModel {
     }
 
     public int getClientId() {
-        return clientId;
+        return this.clientId;
     }
 
     public int getProductId() {

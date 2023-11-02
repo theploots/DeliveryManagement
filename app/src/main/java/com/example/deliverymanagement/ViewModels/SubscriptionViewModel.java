@@ -44,4 +44,7 @@ public class SubscriptionViewModel extends AndroidViewModel {
     }
 
 
+    public LiveData<List<Integer>> getAllSubscriptionIds() {
+        return repository.getAllSubscriptionIds();
+    }
 }

@@ -7,40 +7,36 @@
     android:orientation="horizontal"
     tools:context=".fragments.RemoveSubscriptionFragment">
 
-    <!-- Left side (1/3 width) -->
+    <!-- Left side (1/3 width), containing a REMOVE button and a back button -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#E8D5D5"
-        android:backgroundTint="#C3BDBD"
         android:orientation="vertical">
 
+        <!-- Remove subscription button -->
         <Button
             android:id="@+id/buttonRemoveSubscription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="3dp"
+            android:layout_margin="3dp"
             android:elevation="10dp"
             android:text="REMOVE"
             app:icon="@android:drawable/ic_menu_close_clear_cancel"
             app:iconPadding="0dp" />
 
+        <!-- Back button -->
         <ImageButton
             android:id="@+id/imageButtonBackRemove"
             android:layout_width="match_parent"
             android:layout_height="69dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="3dp"
+            android:layout_margin="3dp"
             android:background="@android:drawable/ic_menu_revert"
             android:backgroundTint="#2B0868" />
-
     </LinearLayout>
 
-    <!-- Right side (2/3 width) -->
+    <!-- Right side (2/3 width), for input and display of subscription information -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -48,6 +44,7 @@
         android:background="#E3E1E1"
         android:orientation="vertical">
 
+        <!-- Subscription title header -->
         <TextView
             android:id="@+id/textViewSubscriptionTitleRemove"
             android:layout_width="match_parent"
@@ -59,24 +56,138 @@
             android:textColor="#FFFFFF"
             android:textSize="34sp" />
 
-        <EditText
-            android:id="@+id/edtSubscriptionNumber"
+        <!-- Container for the subscription number input and the show button -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter subscription number" />
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
 
-        <Button
-            android:id="@+id/btnShowSubscription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Show" />
+            <!-- Subscription number input field -->
+            <EditText
+                android:id="@+id/editTextSearchIdRemove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter Id here"
+                android:inputType="text" />
 
-        <ListView
-            android:id="@+id/lstSubscriptions"
+            <!-- Search button -->
+            <Button
+                android:id="@+id/buttonSearchIdRemove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:text="search"
+                app:icon="@android:drawable/ic_menu_search"
+                app:iconPadding="0dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewNameRemove"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:choiceMode="singleChoice" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textViewFullNameResultRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FBFAFA"
+            android:cursorVisible="true"
+            android:elevation="7dp"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Address"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textViewAddressResultRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FDFCFC"
+            android:elevation="7dp"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:id="@+id/textViewProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:paddingLeft="5dp"
+            android:text="Product"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textViewProductResultRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp" />
+
+        <TextView
+            android:id="@+id/textViewQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:text="Quantity:"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textViewQuantityResultRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF"
+            android:elevation="7dp"
+            android:ems="10"
+            android:inputType="number"
+            android:paddingLeft="5dp" />
 
     </LinearLayout>
 </LinearLayout>

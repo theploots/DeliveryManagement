@@ -20,7 +20,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.DriverHold
     @NonNull
     @Override
     public DriverHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.driver_item, null);
+        View view = View.inflate(parent.getContext(), R.layout.list_item, null);
 
         return new DriverHolder(view);
     }
@@ -45,7 +45,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.DriverHold
         private TextView textViewDriverName;
         public DriverHolder(@NonNull View itemView) {
             super(itemView);
-            textViewDriverName = itemView.findViewById(R.id.textViewDriverName);
+            textViewDriverName = itemView.findViewById(R.id.IdTextView);
 
         }
     }

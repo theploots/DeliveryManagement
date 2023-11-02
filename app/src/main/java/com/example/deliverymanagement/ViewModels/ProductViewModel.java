@@ -35,5 +35,9 @@ public class ProductViewModel extends AndroidViewModel {
         return allProducts;
     }
 
+    public LiveData<ProductModel> getProductById(int productId) {
+        return  repository.getProductById(productId);
+    }
+
     // You can add more methods specific to ProductModel if needed
 }

@@ -8,18 +8,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.deliverymanagement.R;
+import com.example.deliverymanagement.ViewModels.ClientViewModel;
+import com.example.deliverymanagement.ViewModels.ProductViewModel;
+import com.example.deliverymanagement.ViewModels.SubscriptionViewModel;
+import com.example.deliverymanagement.models.ClientModel;
+import com.example.deliverymanagement.models.ProductModel;
+import com.example.deliverymanagement.models.SubscriptionModel;
 
 public class RemoveSubscriptionFragment extends Fragment {
+    TextView textViewFullNameResultRemove,textViewAddressResultRemove, textViewProductResultRemove, textViewQuantityResultRemove,editTextSearchIdRemove;
 
-    private ListView lstSubscriptions;
+
     private EditText edtSubscriptionNumber;
     private ImageButton imageButtonBackRemove;
+    private SubscriptionViewModel subscriptionViewModel;
+
+    private ClientViewModel clientViewModel;
+
+    private ProductViewModel productViewModel;
 
     @Nullable
     @Override
@@ -27,17 +43,38 @@ public class RemoveSubscriptionFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_remove_subscription, container, false);
 
-        lstSubscriptions = view.findViewById(R.id.lstSubscriptions);
-        edtSubscriptionNumber = view.findViewById(R.id.edtSubscriptionNumber);
+        SubscriptionViewModel subscriptionViewModel = new ViewModelProvider(this).get(SubscriptionViewModel.class);
+        ClientViewModel clientViewModel = new ViewModelProvider(this).get(ClientViewModel.class);
+        ProductViewModel productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
+
+
+
+        textViewFullNameResultRemove = view.findViewById(R.id.textViewFullNameResultRemove);
+        textViewAddressResultRemove = view.findViewById(R.id.textViewAddressResultRemove);
+        textViewProductResultRemove = view.findViewById(R.id.textViewProductResultRemove);
+        textViewQuantityResultRemove = view.findViewById(R.id.textViewQuantityResultRemove);
+
+        edtSubscriptionNumber = view.findViewById(R.id.editTextSearchIdRemove);
         imageButtonBackRemove = view.findViewById(R.id.imageButtonBackRemove);
 
         Button btnRemoveSubscription = view.findViewById(R.id.buttonRemoveSubscription);
-        Button btnShowSubscription = view.findViewById(R.id.btnShowSubscription);
+        Button btnShowSubscription = view.findViewById(R.id.buttonSearchIdRemove);
 
         //... (Code for populating the ListView)
 
         btnRemoveSubscription.setOnClickListener(v -> {
-            //... (Logic for removing subscription)
+            int id = Integer.valueOf(edtSubscriptionNumber.getText().toString());
+            LiveData<SubscriptionModel> subscriptionLiveData = subscriptionViewModel.getSubscriptionById(id);
+
+            // Observe the LiveData to ensure you have the data
+            subscriptionLiveData.observe(getViewLifecycleOwner(), subscription -> {
+                if (subscription != null) {
+                    subscriptionViewModel.deleteSubscription(subscription);
+                    Toast toast = Toast.makeText(getContext(), "Subscription removed", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            });
         });
 
         imageButtonBackRemove.setOnClickListener(v -> {
@@ -48,9 +85,40 @@ public class RemoveSubscriptionFragment extends Fragment {
         });
 
         btnShowSubscription.setOnClickListener(v -> {
-            String subscriptionNumber = edtSubscriptionNumber.getText().toString();
-            // Logic to show the subscription based on the entered number goes here
+            int id = Integer.valueOf(edtSubscriptionNumber.getText().toString());
+            int  subscriptionNumber = Integer.valueOf(edtSubscriptionNumber.getText().toString());
+            LiveData<SubscriptionModel> subscriptionLiveData = subscriptionViewModel.getSubscriptionById(id);
+
+            // Observe the LiveData to ensure you have the data
+            subscriptionLiveData.observe(getViewLifecycleOwner(), subscription -> {
+                if (subscription != null) {
+                    int clientId = subscription.getClientId();
+                    int productId = subscription.getProductId();
+
+                    // Now you have the data, you can safely access it
+                    LiveData<ClientModel> clientLiveData = clientViewModel.getClientById(clientId);
+                    LiveData<ProductModel> productLiveData = productViewModel.getProductById(productId);
+
+                    clientLiveData.observe(getViewLifecycleOwner(), client -> {
+                        if (client != null) {
+                            textViewFullNameResultRemove.setText(String.valueOf(client.getFirstName() + " " + client.getLastName()));
+                            textViewAddressResultRemove.setText(String.valueOf(client.getAddress()));
+                        }
+                    });
+
+                    productLiveData.observe(getViewLifecycleOwner(), product -> {
+                        if (product != null) {
+                            textViewProductResultRemove.setText(String.valueOf(product.getProductName()));
+
+                        }
+                    });
+
+                    textViewQuantityResultRemove.setText(String.valueOf(subscription.getQuantityMagazine()));
+
+                }
+            });
         });
+
 
         return view;
     }

@@ -28,6 +28,9 @@ public interface SubscriptionDao {
     @Query("SELECT * FROM subscriptions WHERE id = :id")
     LiveData<SubscriptionModel> getSubscriptionById(int id);
 
+    @Query("SELECT id FROM subscriptions ORDER BY id ASC")
+    LiveData<List<Integer>> getAllSubscriptionIds();
+
     // Add a method to get all subscriptions for a specific client
     @Query("SELECT * FROM subscriptions WHERE clientId = :clientId")
     LiveData<List<SubscriptionModel>> getSubscriptionsByClientId(int clientId);
