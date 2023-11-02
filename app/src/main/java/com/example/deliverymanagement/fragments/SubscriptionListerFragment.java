@@ -76,9 +76,9 @@ public class SubscriptionListerFragment extends Fragment {
         subscriberNameTextView = view.findViewById(R.id.subscriberNameTextView);
         addressTextView = view.findViewById(R.id.addressTextView);
         product1NameTextView = view.findViewById(R.id.product1NameTextView);
-        product2NameTextView = view.findViewById(R.id.product2NameTextView);
+
         product1QuantityTextView = view.findViewById(R.id.product1QuantityTextView);
-        product2QuantityTextView = view.findViewById(R.id.product2QuantityTextView);
+
 
 
 
@@ -116,7 +116,7 @@ public class SubscriptionListerFragment extends Fragment {
                         productLiveData.observe(getViewLifecycleOwner(), product -> {
                             if (product != null) {
                                 product1NameTextView.setText(String.valueOf(product.getProductName()));
-                                product2NameTextView.setText(String.valueOf(product.getProductName()));
+
                             }
                         });
 
@@ -137,9 +137,9 @@ public class SubscriptionListerFragment extends Fragment {
         subscriberNameTextView = view.findViewById(R.id.subscriberNameTextView);
         addressTextView = view.findViewById(R.id.addressTextView);
         product1NameTextView = view.findViewById(R.id.product1NameTextView);
-        product2NameTextView = view.findViewById(R.id.product2NameTextView);
+
         product1QuantityTextView = view.findViewById(R.id.product1QuantityTextView);
-        product2QuantityTextView = view.findViewById(R.id.product2QuantityTextView);
+
 
 
 
