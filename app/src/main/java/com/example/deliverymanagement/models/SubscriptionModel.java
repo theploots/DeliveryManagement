@@ -29,14 +29,14 @@ public class SubscriptionModel {
     @ColumnInfo(index = true)
     private int productId;
 
-    private int quantityMagazine;
-    private int quantityNewsPaper;
+    private int quantity;
+//    private int quantity;
 
-    public SubscriptionModel(int clientId, int productId, int quantityMagazine, int quantityNewsPaper) {
+    public SubscriptionModel(int clientId, int productId, int quantity) {
         this.clientId = clientId;
         this.productId = productId;
-        this.quantityMagazine = quantityMagazine;
-        this.quantityNewsPaper = quantityNewsPaper;
+        this.quantity = quantity;
+//        this.quantityNewsPaper = quantityNewsPaper;
     }
 
 
@@ -53,13 +53,13 @@ public class SubscriptionModel {
     }
 
 
-    public int getQuantityMagazine() {
-        return quantityMagazine;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getQuantityNewsPaper() {
-        return quantityNewsPaper;
-    }
+//    public int getQuantityNewsPaper() {
+//        return quantityNewsPaper;
+//    }
 
 
 

@@ -175,7 +175,16 @@ public class AddSubscriptionFragment extends Fragment {
                     String firstName = firstNameAdd.getText().toString().trim();
                     String lastName = lastNameAdd.getText().toString().trim();
                     String address = addressAdd.getText().toString().trim();
-                    String selectedRouteName = routeSpinner.getSelectedItem().toString();
+
+                        // Check if client exists
+                        int existingClientsCount = clientDao.countClientsWithSameNameAndAddress(firstName, lastName, address);
+                        if (existingClientsCount > 0) {
+                            // Client with same name and address already exists, handle this case
+                            getActivity().runOnUiThread(() -> {
+                                Toast.makeText(getContext(), "A client with the same name and address already exists.", Toast.LENGTH_LONG).show();
+                            });
+                            return;
+                        }
 
                     ClientModel client = new ClientModel(firstName, lastName, address);
                     long clientId = clientDao.insertClient(client);
@@ -194,7 +203,7 @@ public class AddSubscriptionFragment extends Fragment {
                             }
 
                             long productId = productDao.getProductIdByName("Magazine");
-                            SubscriptionModel magazineSubscription = new SubscriptionModel((int) clientId, (int) productId, magazineQuantityValue, magazineQuantityValue);
+                            SubscriptionModel magazineSubscription = new SubscriptionModel((int) clientId, (int) productId, magazineQuantityValue);
                             subscriptionViewModel.insertSubscription(magazineSubscription);
                         }
                     }
@@ -212,7 +221,7 @@ public class AddSubscriptionFragment extends Fragment {
                             }
 
                             long productId = productDao.getProductIdByName("Newspaper");
-                            SubscriptionModel newspaperSubscription = new SubscriptionModel((int) clientId, (int) productId, newsPaperQuantityValue, magazineQuantityValue);
+                            SubscriptionModel newspaperSubscription = new SubscriptionModel((int) clientId, (int) productId, newsPaperQuantityValue);
                             subscriptionViewModel.insertSubscription(newspaperSubscription);
                         }
                     }

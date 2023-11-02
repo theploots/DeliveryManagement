@@ -27,4 +27,7 @@ public interface ClientDao {
 
     @Query("SELECT * FROM clients WHERE id = :id")
     LiveData<ClientModel> getClientById(int id);
+
+    @Query("SELECT COUNT(*) FROM clients WHERE firstName = :firstName AND lastName = :lastName AND address = :address")
+    int countClientsWithSameNameAndAddress(String firstName, String lastName, String address);
 }

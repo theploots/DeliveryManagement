@@ -120,8 +120,7 @@ public class SubscriptionListerFragment extends Fragment {
                             }
                         });
 
-                        product1QuantityTextView.setText(String.valueOf(subscription.getQuantityMagazine()));
-                        product2QuantityTextView.setText(String.valueOf(subscription.getQuantityNewsPaper()));
+                        product1QuantityTextView.setText(String.valueOf(subscription.getQuantity()));
                     }
                 });
             }

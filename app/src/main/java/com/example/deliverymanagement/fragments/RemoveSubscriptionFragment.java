@@ -113,7 +113,7 @@ public class RemoveSubscriptionFragment extends Fragment {
                         }
                     });
 
-                    textViewQuantityResultRemove.setText(String.valueOf(subscription.getQuantityMagazine()));
+                    textViewQuantityResultRemove.setText(String.valueOf(subscription.getQuantity()));
 
                 }
             });

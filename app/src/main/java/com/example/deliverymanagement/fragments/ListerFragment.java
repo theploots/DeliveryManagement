@@ -77,12 +77,17 @@ public class ListerFragment extends Fragment {
         imageButtonBackList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getChildFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_lister, new MenuFragment());
-                fragmentTransaction.commit();
+                FragmentManager fragmentManager = getFragmentManager();
+                if (fragmentManager != null && fragmentManager.getBackStackEntryCount() > 0) {
+                    fragmentManager.popBackStack();
+                } else {
+                    // There's nothing in the back stack to go back to.
+                    // Handle this case if needed.
+                }
             }
         });
+
+
 
     }
 
