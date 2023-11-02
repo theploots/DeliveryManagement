@@ -2,9 +2,18 @@ package com.example.deliverymanagement.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "driver")
+@Entity(tableName = "driver",
+        foreignKeys = {
+                @ForeignKey(
+                        entity = RouteModel.class,
+                        parentColumns = "id",
+                        childColumns = "routeId",
+                        onDelete = ForeignKey.SET_NULL
+                )
+        })
 public class DriverModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -16,11 +25,14 @@ public class DriverModel {
     @NonNull
     private String phoneNumber;
 
-    public DriverModel(@NonNull String firstName, @NonNull String lastName, @NonNull String address, @NonNull String phoneNumber) {
+    private Integer routeId; // Made nullable
+
+    public DriverModel(@NonNull String firstName, @NonNull String lastName, @NonNull String address, @NonNull String phoneNumber, Integer routeId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.routeId = routeId ; // No route associated initially
     }
 
     public int getId() {
@@ -46,6 +58,14 @@ public class DriverModel {
     @NonNull
     public String getPhoneNumber() { // Changed method name here
         return phoneNumber;
+    }
+
+    public Integer getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Integer routeId) {
+        this.routeId = routeId;
     }
 
     public void setFirstName(@NonNull String firstName) {
