@@ -47,6 +47,8 @@ public class DeliveryManagementRepository {
         allRouteDetails = routeDetailsDao.getAllRouteDetails();
     }
 
+
+
     /**
      * Shutdown the executor service.
      */
@@ -355,5 +357,9 @@ public class DeliveryManagementRepository {
 
     public LiveData<ProductModel> getProductById(int productId) {
         return productDao.getProductById(productId);
+    }
+
+    public LiveData<List<Integer>> getAllDriverIds() {
+        return driverDao.getAllDriverIds();
     }
 }
