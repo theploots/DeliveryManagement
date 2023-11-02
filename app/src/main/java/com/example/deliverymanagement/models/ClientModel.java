@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
 @Entity(tableName = "clients")
 public class ClientModel {
     @PrimaryKey(autoGenerate = true)
