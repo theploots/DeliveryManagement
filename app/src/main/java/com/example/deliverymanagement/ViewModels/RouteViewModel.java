@@ -46,4 +46,13 @@ public class RouteViewModel extends AndroidViewModel {
         return repository.getAvailableRoutes();
     }
 
+    public LiveData<RouteModel> getRouteById(int routeId) {
+        return repository.getRouteById(routeId);
+    }
+
+    public void assignDriverToRoute(int id, int routeId) {
+        repository.assignDriverToRoute(id, routeId);
+    }
+
+
 }

@@ -52,4 +52,8 @@ public class RouteModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void assignDriverToRoute(int id) {
+        this.driverId = id;
+    }
 }

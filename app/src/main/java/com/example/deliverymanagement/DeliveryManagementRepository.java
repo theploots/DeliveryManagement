@@ -370,4 +370,18 @@ public class DeliveryManagementRepository {
             }
         });
     }
+
+    public LiveData<RouteModel> getRouteById(int routeId) {
+        return routeDao.getRouteById(routeId);
+    }
+
+    public void assignDriverToRoute(int id, int routeId) {
+        executors.execute(() -> {
+            try {
+                routeDao.assignDriverToRoute(id, routeId);
+            } catch (Exception e) {
+                // Handle or log the error for route update.
+            }
+        });
+    }
 }
