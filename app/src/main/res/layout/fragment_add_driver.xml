@@ -168,32 +168,6 @@
             android:inputType="phone"
             android:paddingLeft="3dp" />
 
-        <TextView
-            android:id="@+id/textViewRouteDriver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:background="#FDFCFC"
-            android:elevation="7dp"
-            android:paddingLeft="5dp"
-            android:text="Route"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/editTextRouteDriver"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="#FDFCFC"
-            android:elevation="7dp"
-            android:ems="10"
-            android:hint=""
-            android:inputType="phone"
-            android:paddingLeft="3dp" />
 
         <TextView
             android:layout_width="match_parent"

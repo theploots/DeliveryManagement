@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,6 +50,16 @@ public class AddDriverFragment extends Fragment {
         // Initialize ViewModel
         driverViewModel = new ViewModelProvider(this).get(DriverViewModel.class);
 
+//        // Initialize the spinner for routes
+//        routeSpinner = rootView.findViewById(R.id.spinnerRoutes);
+//
+//        ArrayAdapter<Integer> routeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+//        routeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        routeSpinner.setAdapter(routeAdapter);
+//
+//        // Initialize the LiveData
+//        allAvailableRoutes = routeDao.getAvailableRoutes();
+
         // Set up the button click listener
         addButton.setOnClickListener(v -> {
             // Validate inputs
@@ -74,9 +85,6 @@ public class AddDriverFragment extends Fragment {
 
         return rootView;
     }
-
-// Rest of the validateInput() method and other methods...
-
 
     /**
      * Validates the input fields to ensure they are not empty.
