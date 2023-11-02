@@ -28,6 +28,7 @@ public interface DriverDao {
     @Query("SELECT * FROM driver WHERE id = :driverId")
     LiveData<DriverModel> getDriverById(int driverId);
 
-    @Query("SELECT id FROM driver")
+    @Query("SELECT id FROM driver ORDER BY id ASC")
     LiveData<List<Integer>> getAllDriverIds();
     }
+
